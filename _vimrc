@@ -27,6 +27,7 @@ call dein#add('scrooloose/nerdtree')
 call dein#add('tpope/vim-fugitive.git')
 call dein#add('junegunn/vim-easy-align')
 call dein#add('itchyny/lightline.vim')
+call dein#add('luochen1990/rainbow')
 
 call dein#end()
 call dein#save_state()
@@ -80,7 +81,7 @@ set shiftwidth=4
 autocmd QuickFixCmdPost *grep* cwindow
 
 "相対行番号
-set rnu
+"set rnu
 
 "tagファイルを上位フォルダまで検索
 set tags=tags;
@@ -320,3 +321,31 @@ if !argc()
     autocmd vimenter * NERDTree|normal gg3j
 endif
 
+
+"Rainbow
+"----------------------------------------------------------------------------
+
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+
+let g:rainbow_conf = {
+	\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+	\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+	\	'operators': '_,_',
+	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+	\	'separately': {
+	\		'*': {},
+	\		'tex': {
+	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+	\		},
+	\		'lisp': {
+	\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+	\		},
+	\		'vim': {
+	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+	\		},
+	\		'html': {
+	\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+	\		},
+	\		'css': 0,
+	\	}
+	\}
